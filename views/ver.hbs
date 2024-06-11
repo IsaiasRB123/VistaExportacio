@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="apple-touch-icon" sizes="76x76" href="img/apple-icon.png">
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <title>Consumiendo Exportaciones</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+    <link href="css/nucleo-icons.css" rel="stylesheet" />
+    <link href="css/nucleo-svg.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <link href="css/nucleo-svg.css" rel="stylesheet" />
+    <link id="pagestyle" href="css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+    <style>
+        .Btn-shadow {
+            background-color: #007bff;
+            color: black;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .Btn-delete8 {
+            background-color: #f44336;
+            /* Rojo */
+            color: black;
+            /* Texto negro */
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .Btn-update {
+            background-color: #28a745;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        /* Agregamos estilos para el título y el botón */
+        .card-header h6 {
+            background-color: #cfe2f3; /* Fondo azul claro */
+            padding: 10px; /* Ajuste de espaciado */
+            border-radius: 5px; /* Bordes redondeados */
+            margin-bottom: 0; /* Elimina el margen inferior */
+        }
+
+        .BotoncerrarAdmin {
+            background-color: #f44336; /* Rojo */
+            color: white; /* Texto blanco */
+            padding: 8px 16px; /* Ajuste de espaciado */
+            border: none; /* Sin borde */
+            border-radius: 5px; /* Bordes redondeados */
+            text-decoration: none; /* Sin subrayado */
+        }
+
+        .BotoncerrarAdmin:hover {
+            background-color: #d32f2f; /* Cambio de color al pasar el cursor */
+        }
+    </style>
+</head>
+
+<body class="g-sidenav-show bg-gray-100">
+    <div class="min-height-300 bg-primary position-absolute w-100"></div>
+    <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4"
+        id="sidenav-main">
+        <div class="sidenav-header">
+            <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
+                aria-hidden="true" id="iconSidenav"></i>
+            <a class="navbar-brand m-0" href="#">
+                <img src="img/logo-ct-dark.png" class="navbar-brand-img h-100" alt="main_logo">
+                <span class="ms-1 font-weight-bold">Crud Exportaciones</span>
+            </a>
+        </div>
+        <hr class="horizontal dark mt-0">
+        <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Dashboard</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+    <main class="main-content position-relative border-radius-lg ">
+        <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur"
+            data-scroll="false">
+            <div class="container-fluid py-1 px-3">
+                <nav aria-label="breadcrumb">
+                    <h6 class="font-weight-bolder text-white mb-0">Exportaciones</h6>
+                </nav>
+            </div>
+        </nav>
+        <div class="container-fluid py-4">
+            <div class="row">
+               <div class="col-12">
+    <div class="card mb-4">
+        <div class="card-header pb-0">
+            <h6>Ver exportaciones</h6>
+        </div>
+        <div class="card-body px-0 pt-0 pb-2 text-center"> 
+            <br>
+             <section class="container-form" id="verExp">
+                
+            </section>
+        </div>
+    </div>
+</div>
+            </div>
+        </div>
+
+        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="js/core/popper.min.js"></script>
+    <script src="js/core/bootstrap.min.js"></script>
+    <script src="js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="js/plugins/smooth-scrollbar.min.js"></script>
+    <script src="js/plugins/chartjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+         document.addEventListener('DOMContentLoaded', function () {
+            // URL de la API
+            const apiUrl = 'http://localhost:5179/api/Exportacion';
+
+            // Función para mostrar los detalles del servicio
+            function mostrarDetalleEmpleado(empleado) {
+                const detalleEmpleado =
+                    document.getElementById('verExp');
+                detalleEmpleado.innerHTML = `
+                        <h5>Nombre producto</h5>
+                        <p>${empleado.nombreProducto}</p>
+                        <h5>Precio Dolar</h5>
+                        <p>${empleado.precioActualDolar}</p>
+                        <h5>Cantidad en kilos</h5>
+                        <p>${empleado.kilos}</p>
+                        <h5>Fecha registrada</h5>
+                        <p>${empleado.fechaRegistrada}</p>
+                        <a type="button" href="/"class="BotoncerrarAdmin">Cerrar</a>
+                    `;
+            }
+
+            // Obtener el ID del empleado de la URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const idEmpleado = urlParams.get('id');
+
+                // Llamada a la API para obtener los detalles del  empleado con el ID específico
+            axios.get(`${apiUrl}/${idEmpleado}`)
+                .then(response => {
+                    const empleado = response.data;
+                    mostrarDetalleEmpleado(empleado);
+                })
+                .catch(error => {
+                    console.error('Error al obtener los detallesdel empleado: ', error);
+                    });
+        });
+    </script>
+</body>
+
+</html>

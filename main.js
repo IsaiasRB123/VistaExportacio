@@ -17,6 +17,19 @@ app.get('/', (req, res) => {
     res.render('index', { title: 'Dashboard' });
 });
 
+app.get('/registrar', (req, res) => {
+    res.render('registrar');
+  });
+  
+//   app.get('/ProductosUpdate', (req, res) => {
+//     res.render('forms/Productos/ProductosUpdate');
+//   });
+  
+  app.get('/ver', (req, res) => {
+    res.render('ver');
+  });
+
+
 // Iniciar el servidor
 app.listen(port, () => {
     console.log(`Servidor escuchando en http://localhost:${port}`);
